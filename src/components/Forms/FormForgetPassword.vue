@@ -5,7 +5,7 @@
         <div class="imgclass">
           <img
             class="w-32 h-20 object-contain"
-            src="/src/assets/images/whitelogo.png"
+            src="../../assets/images/whitelogo.png"
             alt=""
           />
         </div>

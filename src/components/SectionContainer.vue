@@ -153,7 +153,7 @@
       // this.get_programmes();
       this.get_sections_programme();
       this.get_sections();
-      // this.get_AllQuiz();
+      this.get_AllQuiz();
 
     //   if (this.token) {
     //     this.get_AllUserQuiz();
@@ -224,7 +224,7 @@
         await Api.getwithouttoken("/games/api/quizz/all")
           .then((response) => {
             const quiztab = response.data;
-            console.log(quiztab)
+            console.log("hello" + response)
             quiztab.forEach((quiz) => {
               if (quiz.published == true) {
                 const formatDeSortie = "DD MMM. Y [à] HH[h]mm";

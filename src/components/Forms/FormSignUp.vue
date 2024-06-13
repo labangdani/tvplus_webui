@@ -415,7 +415,7 @@ export default {
 .blsignup {
   @apply flex items-center justify-center w-full bg-cover;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/src/assets/images/bg.jpeg") right top no-repeat;
+    url("../../assets/images/bg.jpeg") right top no-repeat;
   background-size: cover;
 }
 

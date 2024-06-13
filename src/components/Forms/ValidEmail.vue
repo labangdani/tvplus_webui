@@ -3,7 +3,7 @@
     <div class="wrapper1">
       <section class="my-10">
         <div class="imgclass">
-          <img class=" w-38 h-20 object-contain" src="/src/assets/images/whitelogo.png" alt="">
+          <img class=" w-38 h-20 object-contain" src="../../assets/images/whitelogo.png" alt="">
         </div>
         <form class="text-black mt-2 mx-7">
           <div class="link text-2xl text-center">

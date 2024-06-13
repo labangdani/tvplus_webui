@@ -35,14 +35,16 @@
         <Search />
 
         <div>
-          <div>
-            <!-- v-if="!this.token" -->
-            <button class="btn-login border border-white rounded-full" @click="login()">
+          <div v-if="!token">
+            <button
+              class="btn-login border border-white rounded-full"
+              @click="login()"
+            >
               Se Connecter
             </button>
           </div>
 
-          <!-- <div class="flex pr-2 items-center space-x-4 justify-end"  v-else>
+          <div class="flex pr-2 items-center space-x-4 justify-end" v-else>
             <img
               class="dropbtn"
               :class="{ 'float-right': isDropdownVisible_b }"
@@ -53,14 +55,13 @@
               ref="btnDropdownRef"
             />
             <button
-                v-if="!user.image" 
+              v-if="!user.image"
               class="dropbtn md:w-10 md:h-10 mt-1 bg-[#07693A]"
               :class="{ 'float-right': isDropdownVisible_b }"
               @click="toggleDropdown_b()"
               ref="btnDropdownRef"
             >
-              
-               {{ user.surname.charAt(0).toUpperCase()
+              {{ user.surname.charAt(0).toUpperCase()
               }}{{ user.name.charAt(0).toUpperCase() }}
             </button>
 
@@ -74,7 +75,7 @@
               ref="popoverDropdownRef_b"
             >
               <nuxt-link
-                to="/user/compte"
+                to="/useraccount"
                 class="flex items-center text-sm py-2 px-4 hover:bg-gray-800 w-full whitespace-nowrap bg-transparent"
               >
                 <svg
@@ -98,7 +99,8 @@
               <div class="flex">
                 <a
                   href=""
-                  class="text-sm flex items-center hover:bg-gray-800 py-2 px-4 w-full whitespace-nowrap bg-transparent"
+                  @click="deconnect()"
+                  class="text-sm flex items-center hover:bg-gray-800 py-2 px-4 block w-full whitespace-nowrap bg-transparent"
                 >
                   <svg
                     class="h-5 w-5 mr-2"
@@ -117,8 +119,7 @@
                 </a>
               </div>
 
-
-              <div class="flex">
+              <!-- <div class="flex">
                   <a
                     href=""
                     @click="deconnect()"
@@ -139,11 +140,9 @@
                     </svg>
                     Apparence
                   </a>
-                </div> 
-
-
+                </div>  -->
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -153,23 +152,12 @@
   
 <script >
 // import useHeaderRoute from "../hooks/useHeaderRoute";
-import Search from "./Search.vue";
-import Image from "./Image.vue";
 import logo from "../assets/logo.png";
-import MobileNav from "./MobileNav.vue";
 import { ref, watch } from "vue";
 // import { mapState } from "vuex";
 import { createPopper } from "@popperjs/core";
-import CircleButton from "./CircleButton.vue";
 
 export default {
-  components: {
-    Search,
-    MobileNav,
-    Image,
-    CircleButton,
-  },
-
   data() {
     return {
       logo,
@@ -204,8 +192,8 @@ export default {
     window.addEventListener("scroll", this.handleScroll);
     window.addEventListener("click", this.closeDropdown_a);
     window.addEventListener("click", this.closeDropdown_b);
-    // this.user = JSON.parse(localStorage.getItem("user"));
-    // this.token = localStorage.getItem("jwtToken");
+    this.user = JSON.parse(localStorage.getItem("user"));
+    this.token = localStorage.getItem("jwtToken");
   },
 
   beforeDestroy() {
@@ -265,19 +253,20 @@ export default {
       this.menu = "Programm";
     },
 
-    //Se connecter
+    //Connecter un utilisateur
     login() {
-      console.log(this.$route);
+      // console.log(this.$route);
       localStorage.setItem("path", this.$route.fullPath);
       this.$router.push("/login");
     },
 
-    //Déconnecte l'utilisateur connecté
-    //     deconnect() {
-    //       this.$store.commit("logout");
-    //       this.$router.push("/");
-    //     },
-    //   },
+    //Déconnecter l'utilisateur connecté
+    deconnect() {
+      // this.$store.commit("logout");
+      localStorage.removeItem('user')
+      localStorage.removeItem('jwtToken')
+      this.$router.push("/");
+    },
   },
 
   setup() {
@@ -307,8 +296,7 @@ export default {
         title: "News",
       },
     ];
-    const {currentRoute} = useRouter();
-
+    const { currentRoute } = useRouter();
 
     // let user_search_movies = ref("");
     // watch(user_search_movies, (newValue) => {

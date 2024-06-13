@@ -1,8 +1,8 @@
 <template>
   <section class="sm:pt-20 px-[38px] sm:px-[38px] md:px-8 lg:px-14 xl:px-24">
-    <p class="text-xl sm:text-xl md:text-4xl first-letter:uppercase body mb-2">
+    <h1 class="text-xl sm:text-xl md:text-4xl first-letter:uppercase body mb-2">
       programmes
-    </p>
+    </h1>
 
     <!-- <form class="items-center"> 
         <div class="relative w-full">
@@ -85,7 +85,6 @@
 </template>
   
   <script>
-//   import VideoCard from "../../components/VideoCard.vue";
 import ProgrammeCarouselSkeleton from "../../skeletons/ProgrammeCarouselSkeleton.vue";
 import IconArrowRight from "~icons/ic/outline-arrow-forward-ios";
 import IconArrowLeft from "~icons/ic/outline-arrow-back-ios";
@@ -96,15 +95,12 @@ import { useRouter } from "vue-router";
 import { Api } from "../../helpers";
 import { mapState } from "vuex";
 import { ref } from "vue";
-//   import Image from "../../components/Image.vue";
 
 export default {
   components: {
-    //   VideoCard,
     ProgrammeCarouselSkeleton,
     IconArrowRight,
     IconArrowLeft,
-    //   Image,
   },
 
   data() {

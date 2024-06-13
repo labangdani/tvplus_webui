@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiClient = axios.create({baseURL: "https://api.2play.cm/"})
+const serverUrl = import.meta.env.VITE_SERVER_URL   
 export const Api = {
     get(route, config) {
         const user = JSON.parse(localStorage.getItem("user"))
@@ -14,16 +14,16 @@ export const Api = {
             config.headers.Authorization = `Bearer ${token}`
         }
 
-        return apiClient.get(route, config)
+        return axios.get(serverUrl + route, config)
         
     },
     
     getwithouttoken(route) {
-        return apiClient.get(route)  
+        return axios.get(serverUrl + route)  
     },
 
     postwithouttoken(route, data) {
-        return apiClient.post(route, data)
+        return axios.post(serverUrl + route, data)
     },
 
     post(route, data, config) {
@@ -37,12 +37,12 @@ export const Api = {
     
             config.headers.Authorization = `Bearer ${token}`
         }
-        return apiClient.post(route, data, config)
+        return axios.post(serverUrl + route, data, config)
         
     },
 
     putwithouttoken(route, data) {
-        return apiClient.put(route, data)
+        return axios.put(serverUrl + route, data)
     },
 
     put(route, data, config) {
@@ -56,6 +56,6 @@ export const Api = {
     
             config.headers.Authorization = `Bearer ${token}`
         }
-        return apiClient.put(route, data, config)
+        return axios.put(serverUrl + route, data, config)
     }
 }

@@ -11,10 +11,17 @@ export default defineNuxtConfig({
     ]
   },
 
-  modules: ['@nuxtjs/tailwindcss', "@stefanobartoletti/nuxt-social-share"],
+  modules: ['@nuxtjs/tailwindcss', '@stefanobartoletti/nuxt-social-share'],
 
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    }
+  },
 
-  css: ['animate.css'],
+  css: ['animate.css',
+    'vue3-tel-input/dist/vue3-tel-input.css'],
 
   tailwindcss: {
     cssPath: ['~/assets/css/index.css', { injectPosition: "first" }],
@@ -25,7 +32,7 @@ export default defineNuxtConfig({
     config: {},
     viewer: true,
   },
-  
+
   srcDir: 'src/',
 
   app: {
@@ -70,6 +77,16 @@ export default defineNuxtConfig({
         },
       ],
     }
+  },
+
+  nitro: {
+    devProxy: {
+      // used to avoid CORS ORIGIN ERRORS
+      '/proxy/': { 
+        target: 'https://api.2play.cm/', 
+        changeOrigin: true 
+        },
+    },
   }
 
 })
